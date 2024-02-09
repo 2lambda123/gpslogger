@@ -44,6 +44,7 @@ import com.mendhak.gpslogger.common.AppSettings;
 import com.mendhak.gpslogger.common.PreferenceHelper;
 import com.mendhak.gpslogger.common.Strings;
 import com.mendhak.gpslogger.common.slf4j.Logs;
+import io.github.pixee.security.ObjectInputFilters;
 
 import org.slf4j.Logger;
 
@@ -306,6 +307,7 @@ public class Files {
             if(cacheFile.length() > 0){
                 FileInputStream fis = new FileInputStream(cacheFile);
                 ObjectInputStream ois = new ObjectInputStream(fis);
+                ObjectInputFilters.enableObjectFilterIfUnprotected(ois);
 
                 items = (ArrayList<String>) ois.readObject();
 
